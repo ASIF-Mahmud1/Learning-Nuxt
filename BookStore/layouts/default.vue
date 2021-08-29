@@ -1,3 +1,4 @@
+
 <template>
   <v-app dark>
     <v-navigation-drawer
@@ -50,6 +51,7 @@
       </v-btn>
       <v-toolbar-title v-text="title" />
       <v-spacer />
+      <v-btn color="green" @click.stop="openModal">Add Books</v-btn>
       <v-btn
         icon
         @click.stop="rightDrawer = !rightDrawer"
@@ -89,7 +91,10 @@
 </template>
 
 <script>
+import { eventBus } from "@/eventBus";
+
 export default {
+  
   data () {
     return {
       clipped: false,
@@ -112,6 +117,12 @@ export default {
       rightDrawer: false,
       title: 'Vuetify.js'
     }
+  },
+  methods: {
+    openModal() {
+      eventBus.$emit("open-add-book-modal");
+    }
   }
+
 }
 </script>
