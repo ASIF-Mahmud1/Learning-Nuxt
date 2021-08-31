@@ -16,7 +16,7 @@
         }).length
       }}
     </p>
-    <todo  v-for="todo in todos" :key="todo.title" v-bind:todo="todo"></todo>
+    <todo  v-for="todo in todos" :key="todo.title" v-bind:todo="todo" v-on:delete-todo="deleteTodo" ></todo>
   </div>
 </template>
 
@@ -27,6 +27,15 @@ export default {
     components: {
     Todo,
   },
+ methods: {
+  deleteTodo(todo) {
+    console.log("triggered from todo list")
+  const todoIndex = this.todos.indexOf(todo);
+  this.todos.splice(todoIndex, 1);
+  },
+
+ }
+
 };
 </script>
 <style>
